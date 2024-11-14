@@ -174,3 +174,10 @@ while [ $still_playing -eq 1 ]; do
 		pick_randomly
 	fi
 done
+
+echo "Play again? (y/n)"
+read -r play_again
+if [ "$play_again" = "y" ]; then
+	#re-execute the script
+	bash "$0"
+fi
