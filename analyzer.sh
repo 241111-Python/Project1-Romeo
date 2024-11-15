@@ -1,14 +1,16 @@
 #!/usr/bin/bash
 
 #file storing the results
+#results_file="/mnt/c/Users/Romio/TicTacToe/Project1-Romeo/results.csv"
 results_file="./results.csv"
 
 #file storing the stats
+#stats_file="/mnt/c/Users/Romio/TicTacToe/Project1-Romeo/stats.txt"
 stats_file="./stats.txt"
 
 #Check if the results file exists. If not we create it in the same folder.
 if [ ! -f "$stats_file" ]; then
-	touch ./stats.txt
+	touch /mnt/c/Users/Romio/TicTacToe/Project1-Romeo/stats.txt/stats.txt
 fi
 
 #Add a timestamp for when stats are being collected
@@ -52,8 +54,8 @@ fi
 echo -e "\tMost common first user pick type: " "$first_pick_type" >> "$stats_file"
 
 #Fourth column, Second result
-win_type=$(awk -F, '{print $4}' "$results_file" | sort | uniq -c | sort -nr | head -n 1 | awk '{print $2}')
-echo -e "\tMost common user win type: " "$win_type" >> "$stats_file"
+#win_type=$(awk -F, '{print $4}' "$results_file" | sort | uniq -c | sort -nr | head -n 1 | awk '{print $2}')
+#echo -e "\tMost common user win type: " "$win_type" >> "$stats_file"
 
 #Calculate the average of any column received as input
 function avg_col() {
@@ -97,6 +99,6 @@ while IFS=',' read -ra line; do
     fi
 done < "$results_file"
 
-echo -e "\tGame times ranged from: ($min_time to $max_time)" >> "$stats_file"
+echo -e "\tGame times ranged from: ($min_time to $max_time) seconds" >> "$stats_file"
 
 echo "" >> "$stats_file"
