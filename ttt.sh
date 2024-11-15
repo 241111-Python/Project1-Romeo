@@ -19,7 +19,7 @@ source "./send_results.sh"
 #Check if the results file exists. If not we create it in the same folder.
 if [ ! -f "$file" ]; then
 	touch ./results.csv
-	echo "Index,Outcome,FirstUserPick,WinType,NumofUserPicks,GameTime" > results.csv
+	echo "Index,Outcome,FirstUserPick,WType,NumofUserPicks,GameTime" > results.csv
 fi
 
 #This function is used to print the board throughout every iteration
@@ -59,7 +59,7 @@ function check_game_state() {
 				time_elapsed=$SECONDS
 				if [ "${my_array[$col]}" == "X" ]; then
 					echo "YOU LOSE!"
-					send_results "Loss" "Column" "$time_elapsed" "$first_pick" "$choice_count"
+					send_results "Loss" "NA" "$time_elapsed" "$first_pick" "$choice_count"
 				else
 					echo "YOU WIN!"
 					send_results "Win" "Column" "$time_elapsed" "$first_pick" "$choice_count"
@@ -78,7 +78,7 @@ function check_game_state() {
 				time_elapsed=$SECONDS
                 if [ "${my_array[$row]}" == "X" ]; then
                     echo "YOU LOSE!"
-					send_results "Loss" "Row" "$time_elapsed" "$first_pick" "$choice_count"
+					send_results "Loss" "NA" "$time_elapsed" "$first_pick" "$choice_count"
                 else
                     echo "YOU WIN!"
 					send_results "Win" "Row" "$time_elapsed" "$first_pick" "$choice_count"
@@ -96,7 +96,7 @@ function check_game_state() {
 			time_elapsed=$SECONDS
             if [ "${my_array[4]}" = "X" ]; then
                 echo "YOU LOSE!"
-				send_results "Loss" "Diagonal" "$time_elapsed" "$first_pick" "$choice_count"
+				send_results "Loss" "NA" "$time_elapsed" "$first_pick" "$choice_count"
 				return 0
             else
                 echo "YOU WIN!"
